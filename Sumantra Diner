@@ -1,0 +1,637 @@
+//Sumantra Das- Restaurant Diner Application Final Evaluation
+//January 14,2020
+//ICS2O0
+
+/*
+
+This is our final evalutation project where we've been tasked to create a application for a 
+restaurant. This application takes the order or customer, assign seat, calculates
+totals and tips and gives different payment methods for the customer. This can be used 
+by any restaurant around the world. 
+ */
+//The Java libraries that have been imported to make code functional
+import java.util.*;
+import java.text.DecimalFormat;
+import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class SumantraDiner2 {
+
+    public static void main(String[] args) {
+
+        //The scanners used for inputs, decimalformat and the date and time, random(table seats)
+        Scanner Sumantra = new Scanner(System.in);
+
+        DecimalFormat cash = new DecimalFormat("$#0.00");
+
+        SimpleDateFormat timesDates = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+        Date date = new Date();
+
+        System.out.println(timesDates.format(date));
+
+        Random rand = new Random();
+
+        //These are all the variables for each the items that are being served in the restaurant
+        int egg, bacon, muffin, FrenchToast, FruitBasket, Soda, Cereal, Coffee, Tea, OJ, TJ, Milk;
+
+        String item;
+
+        //These variable are use to calculat the total amount of each item;
+        double totegg = 0;
+        double totbacon = 0;
+        double totmuffin = 0;
+        double totftoast = 0;
+        double totfbasket = 0;
+        double totcereal = 0;
+        double totsoda = 0;
+        double totcoffee = 0;
+        double tottea = 0;
+        double tottomatojuice = 0;
+        double totoj = 0;
+        double totmilk = 0;
+
+        //These variables calculates the total cost of each item
+        double totalegg, totalbacon, totalmuffin, totalFB, totalsoda, totalcereal, totalcoffee, totaltea, totalOJ, totalTJ, totalMilk, totalftoast;
+
+        char choice;
+
+        int people;
+
+          String name;
+          
+      
+
+        //Method displaying title
+        title();
+
+        String reservation;
+
+        System.out.println("Welcome to Optimal One Diner");
+
+        System.out.println(" ");
+
+        int waittime = 1 + rand.nextInt(60 + 1 - 1);
+
+        //Asks for customers name
+        
+        System.out.println("Can we have your name");
+        name = Sumantra.nextLine();
+
+        System.out.println("Do you have a reseravation");
+        reservation = Sumantra.nextLine();
+        
+        if (reservation.equalsIgnoreCase("Yes")) {
+            
+
+            System.out.println("yes we have the reservation under the name " + name);
+
+        } else if (reservation.equalsIgnoreCase("No")) {
+      
+
+            System.out.println("Please wait " + waittime + " minutes to be seated");
+
+        }
+
+        System.out.println("How many people ");
+        people = Sumantra.nextInt();
+
+        //Assigns the customer a random table numbers 
+        int tablenum = 1 + rand.nextInt(20 + 1 - 1);
+        System.out.println("Please sit at the table " + tablenum);
+
+        System.out.println();
+
+        System.out.println("This is our Menu");
+
+        System.out.println();
+        System.out.println();
+
+        //Method Displaying Menu
+        menu();
+
+        /*
+        
+        Here we have a do loop, which is able to take the first order of the customer
+        for one of the items. Then there is a while statements that loops the program or 
+        breaks it if the customer wants more items (y/N).
+        
+         */
+        do {
+
+            //Value/Price of each item avaible
+            double e = 6.00;
+            double b = 20.75;
+            double m = 5.50;
+            double t = 5.50;
+            double fb = 5.00;
+            double c = 3.25;
+            double cafe = 4.00;
+            double tj = 2.50;
+            double tetley = 1.75;
+            double orangej = 1.00;
+            double dairy = 1.50;
+            double soda = 2.00;
+
+            //Asks the customer to input what item they would like
+            System.out.println("What Breakfast Iteam do you want");
+            Scanner Sumantra1 = new Scanner(System.in);
+            item = Sumantra1.nextLine();
+
+            /*
+            These if and else if statements would assign the item according to what item the customer 
+            has chosen and would calculate the total amount of the item the customer has inputed and 
+            displays the price. 
+             */
+            if (item.equalsIgnoreCase("Egg")) {
+                System.out.println("How many eggs do you want  " + " Price: " + cash.format(e));
+                egg = Sumantra.nextInt();
+                totegg = egg + totegg;
+
+            } else if (item.equalsIgnoreCase("Bacon")) {
+                System.out.println("How many servings of bacon do you want " + "Price: " + cash.format(b));
+                bacon = Sumantra.nextInt();
+                totbacon = bacon + totbacon;
+
+            } else if (item.equalsIgnoreCase("Muffin")) {
+                System.out.println("How many muffins do you want " + "Price: " + cash.format(m));
+                muffin = Sumantra.nextInt();
+                totmuffin = muffin + totmuffin;
+
+            } else if (item.equalsIgnoreCase("French Toast")) {
+                System.out.println("How many servings of french toast " + "Price: " + cash.format(t));
+                FrenchToast = Sumantra.nextInt();
+                totftoast = FrenchToast + totftoast;
+
+            } else if (item.equalsIgnoreCase("Fruit")) {
+
+                System.out.println("How many servings of fruit do you want  " + "Price:  " + cash.format(fb));
+                FruitBasket = Sumantra.nextInt();
+                totfbasket = FruitBasket + totfbasket;
+
+            } else if (item.equalsIgnoreCase("Cereal")) {
+
+                System.out.println("How many servings of cereal do you want " + "Price: " + cash.format(c));
+                Cereal = Sumantra.nextInt();
+                totcereal = Cereal + totcereal;
+
+            } else if (item.equalsIgnoreCase("Coffee")) {
+
+                System.out.println("How many cups of coffee do you want " + "Price: " + cash.format(cafe));
+                Coffee = Sumantra.nextInt();
+                totcoffee = Coffee + totcoffee;
+
+            } else if (item.equalsIgnoreCase("Tea")) {
+                System.out.println("How many cups of tea do you want" + "Price: " + cash.format(tetley));
+                Tea = Sumantra.nextInt();
+                tottea = Tea + tottea;
+
+            } else if (item.equalsIgnoreCase("Juice")) {
+
+                System.out.println("How many glasses of Orange Juice " + "Price: " + cash.format(orangej));
+                OJ = Sumantra.nextInt();
+                totoj = OJ + totoj;
+
+            } else if (item.equalsIgnoreCase("Milk")) {
+
+                System.out.println("How glasses of milk you want " + "Price: " + cash.format(dairy));
+                Milk = Sumantra.nextInt();
+                totmilk = Milk + totmilk;
+
+            } else if (item.equalsIgnoreCase("Soda")) {
+
+                System.out.println("How much soda do you want" + "Price: " + cash.format(soda));
+                Soda = Sumantra.nextInt();
+                totsoda = Soda + totsoda;
+
+            } else if (item.equalsIgnoreCase("Tomato Juice")) {
+
+                System.out.println("How much Tomato juice do you want" + "Price: " + cash.format(tj));
+                TJ = Sumantra.nextInt();
+                tottomatojuice = TJ + tottomatojuice;
+
+            }
+
+            //While statement that give the customer a choice to want more items
+            System.out.println("Anything Else y/n");
+            choice = Sumantra.next().charAt(0);
+
+        } while (choice == 'y' || choice == 'Y');
+
+        System.out.println();
+
+        //These statements calculates the total cost for each item
+        totalegg = totegg * 6.00;
+        totalbacon = totbacon * 20.75;
+        totalmuffin = totmuffin * 5.50;
+        totalFB = totfbasket * 5.00;
+        totalftoast = totftoast * 5.50;
+        totalsoda = totsoda * 2.00;
+        totalcereal = totcereal * 3.25;
+        totalcoffee = totcoffee * 4.00;
+        totaltea = tottea * 1.75;
+        totalOJ = totoj * 1.00;
+        totalTJ = tottomatojuice * 2.50;
+        totalMilk = totmilk * 1.50;
+
+        //These calculates the subtotal of all the items
+        double totp = totalegg + totalbacon + totalmuffin + totalFB + totalftoast + totalsoda + totalcereal + totalcoffee + totaltea + totalOJ + totalTJ + totalMilk;
+
+        double totp2 = totalegg + totalbacon + totalmuffin + totalFB + totalftoast + totalsoda + totalcereal + totalcoffee + totaltea + totalOJ + totalTJ + totalMilk;
+
+        //The start of the Bill which shows time and date stamps     
+        SimpleDateFormat TD = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+        Date d = new Date();
+
+        System.out.println(timesDates.format(date));
+
+        System.out.println("************************\n"
+                + "* Optimal One Toronto *\n"
+                + "***********************");
+
+        /*
+        
+        Here we have more if statements which are able to display only the items that
+        the customer has ordered. It does this by looking at the total and seeing if the price
+        is at least $0.1 . It also display the number of each item odered and the total price for
+        each item.  
+         */
+        System.out.println("*********************************************************");
+
+        if (totalegg == 0.1 || totalegg > 0.1) {
+
+            System.out.println(totegg + " Eggs price: " + cash.format(totalegg));
+
+            System.out.println("*********************************************************");
+        }
+        if (totalmuffin == 0.1 || totalmuffin > 0.1) {
+
+            System.out.println(totmuffin + " Muffin: " + cash.format(totalmuffin));
+
+            System.out.println("*********************************************************");
+        }
+        if (totalbacon == 0.1 || totalbacon > 0.1) {
+
+            System.out.println(totbacon + " Bacon: " + cash.format(totalbacon));
+
+            System.out.println("*********************************************************");
+        }
+        if (totalFB == 0.1 || totalFB > 0.1) {
+
+            System.out.println(totalFB + " Fruit Basket: " + cash.format(totalFB));
+
+            System.out.println("*********************************************************");
+
+        }
+        if (totalftoast == 0.1 || totalftoast > 0.1) {
+
+            System.out.println(totftoast + " French Toast: " + cash.format(totalftoast));
+
+            System.out.println("*********************************************************");
+
+        }
+        if (totalsoda == 0.1 || totalsoda > 0.1) {
+
+            System.out.println(totsoda + " Soda: " + cash.format(totalsoda));
+
+            System.out.println("*********************************************************");
+        }
+        if (totalcereal == 0.1 || totalcereal > 0.1) {
+
+            System.out.println(totcereal + " Cereal: " + cash.format(totalcereal));
+
+            System.out.println("*********************************************************");
+
+        }
+        if (totalcoffee == 0.1 || totalcoffee > 0.1) {
+
+            System.out.println(totcoffee + " Coffee: " + cash.format(totalcoffee));
+
+            System.out.println("*********************************************************");
+
+        }
+        if (totaltea == 0.1 || totaltea > 0.1) {
+
+            System.out.println(tottea + " Tea: " + cash.format(totaltea));
+
+            System.out.println("*********************************************************");
+
+        }
+        if (totalOJ == 0.1 || totalOJ > 0.1) {
+
+            System.out.println(totoj + " Juice: " + cash.format(totalOJ));
+
+            System.out.println("**********************************************************");
+        }
+        System.out.println();
+
+        if (totalTJ == 0.1 || totalTJ > 0.1) {
+
+            System.out.println(tottomatojuice + " Tomato Juice: " + cash.format(totalTJ));
+
+            System.out.println("***********************************************************");
+        }
+        if (totalMilk == 0.1 || totalMilk > 0.1) {
+
+            System.out.println(totmilk + " Milk: " + cash.format(totalMilk));
+
+            System.out.println("***********************************************************");
+
+        }
+
+        double finaltotal;
+
+        System.out.println();
+
+        double tip;
+        double choicetip;
+        //Asks the customer to input the tip 
+        System.out.println("What Tip would you add 5%, 10%, 15%, 20%"+"Do you want to add your own tip");
+        tip = Sumantra.nextInt();
+
+        //calculates the tip for according input placed by customer
+        if (tip == 5) {
+
+            tip = totp2 * 0.05;
+
+        } else if (tip == 10) {
+
+            tip = totp2 * 0.10;
+
+        } else if (tip == 15) {
+
+            tip = totp2 * 0.15;
+
+        } else if (tip == 20) {
+
+            tip = totp2 * 0.2;
+        }
+        else if(tip==0){
+            tip=totp2*0;
+        }
+        else if(tip==1){
+            
+            System.out.println("How much tip would you like to add ");
+            choicetip=Sumantra.nextDouble();
+            
+            tip=choicetip;
+            
+        }
+        
+        
+
+        finaltotal = totp2 * 1.13 + tip;
+
+        //method for the final bill
+        FinalBill(totp, tip);
+
+        //method for that prints payment options
+        paymentopt(finaltotal);
+
+        //method prints Final thankyou statement
+        thankyou(name);
+
+    }
+
+    //This the method has the code for the title in ASCII
+    public static void title() {
+
+        System.out.println("   __                        _     __        \n"
+                + "  / ')   _/_                //    / ')       \n"
+                + " /  /_   /  o ______  __.  //    /  /____  _ \n"
+                + "(__//_)_<__<_/ / / <_(_/|_</_   (__// / <_</_\n"
+                + "   /                                         \n"
+                + "  '  ");
+
+    }
+
+    //This the method that has the code for menu
+    public static void menu() {
+
+        DecimalFormat cash = new DecimalFormat("$#0.00");
+
+        double e = 6.00;
+        double b = 20.75;
+        double m = 5.50;
+        double t = 0.50;
+        double fb = 5.00;
+        double c = 3.25;
+        double cafe = 4.00;
+        double tj = 2.50;
+        double tetley = 1.75;
+        double orangej = 1.00;
+        double dairy = 1.50;
+        double soda = 2.00;
+
+        //This is a two-dimensional array which is able to put the menu in a 3 by 4 format
+        String menu[][];
+        menu = new String[3][4];
+
+        menu[0][0] = ("Egg " + cash.format(e));
+        menu[0][1] = ("Bacon " + cash.format(b));
+        menu[0][2] = ("Muffin " + cash.format(m));
+        menu[0][3] = ("French Toast " + cash.format(t));
+        menu[1][0] = ("Fruit Basket " + cash.format(fb));
+        menu[1][1] = ("Cereal " + cash.format(c));
+        menu[1][2] = ("Coffee " + cash.format(cafe));
+        menu[1][3] = ("Tea " + cash.format(tetley));
+        menu[2][0] = ("Juice " + cash.format(orangej));
+        menu[2][1] = ("Milk " + cash.format(dairy));
+        menu[2][2] = ("Soda " + cash.format(soda));
+        menu[2][3] = ("Tomato Juice " + cash.format(tj));
+
+        //Prints of the item according to the index number
+        System.out.print(menu[0][0] + "\t");
+        System.out.print(menu[0][1] + "\t");
+        System.out.print(menu[0][2] + "\t");
+        System.out.print(menu[0][3] + "\t");
+        System.out.println();
+        System.out.println();
+        System.out.print(menu[1][3] + "\t");
+        System.out.print(menu[1][1] + "\t");
+        System.out.print(menu[1][2] + "\t");
+        System.out.print(menu[1][0] + "\t");
+        System.out.println();
+        System.out.println();
+        System.out.print(menu[2][0] + "\t");
+        System.out.print(menu[2][1] + "\t");
+        System.out.print(menu[2][2] + "\t");
+        System.out.print(menu[2][3] + "\t");
+        System.out.println();
+        System.out.println();
+
+    }
+
+    //This is the that has the code for the final bill. "totp" has been imported from the main method
+    public static void FinalBill(double totp, double tip) {
+
+        DecimalFormat cash = new DecimalFormat("$#0.00");
+
+        Scanner Sumantra2 = new Scanner(System.in);
+
+        //variable for the final bill, final total, tax and subtotal
+        double finaltotal;
+        double tax;
+        double subtotal = totp;
+
+        System.out.println("Subtotal: " + cash.format(subtotal));
+
+        //calculates the tax upon the subtotal
+        tax = subtotal * 0.13;
+        System.out.println("Tax: " + cash.format(tax));
+
+        System.out.println("Tip left: " + cash.format(tip));
+
+        //final total, which includes the subtotal, tax and tip
+        finaltotal = subtotal + tax + tip;
+        System.out.println("Finaltotal: " + cash.format(finaltotal));
+
+    }
+
+    //This is the code that prints the payment options
+    public static void paymentopt(double finaltotal) {
+
+        DecimalFormat cash = new DecimalFormat("$#0.00");
+        Scanner Sumantra3 = new Scanner(System.in);
+
+        String Method, pin;
+
+        //Asks the user for what types of payment method
+        System.out.println("How would you like to pay( Mastercard, cash, etransfer, Bitcoin,Debit )");
+        Method = Sumantra3.nextLine();
+
+        //case structure used for the different payment methods
+        switch (Method) {
+
+            //Mastercard option, where user will enter pin and if/else statements will verify the pin
+            case ("Mastercard"): {
+
+                System.out.println("Enter Pin");
+                pin = Sumantra3.nextLine();
+
+                int l = pin.length();
+
+                if (l < 4) {
+
+                    System.out.println("Invalid Pin");
+
+                } else if (l > 4) {
+
+                    System.out.println("Invalid Pin");
+
+                } else {
+
+                    System.out.println("Payment Accepted");
+
+                }
+                break;
+
+            }
+
+            // the e-transfer method, ask user to enter their email and display the email where the bill has been sent
+            case ("E-Transfer"): {
+
+                String email;
+                System.out.println("Enter Your Account details (email)");
+                email = Sumantra3.nextLine();
+
+                System.out.println("An email of the bill has been sent to " + email);
+                break;
+
+            }
+            /*
+                        The cash method asks user to enter cash amount. THis will calculate the change
+                        and if the user has entered the correct amount of money. 
+                        
+                        
+             */
+            case ("Cash"): {
+
+                Scanner money = new Scanner(System.in);
+                double amount;
+
+              
+
+                /*The "do" loop will preform this by first asking the user to input the cash and if the cash 
+            and if its the right amount or their is change it will be given and the code will break. Unless it 
+            will be looping and asking the user to add the correct amount. 
+            
+                 */
+                do {
+                    System.out.println("Please enter the cash amount");
+                    amount = money.nextDouble();
+
+
+                    if (amount > finaltotal) {
+                        double change = amount - finaltotal;
+                        System.out.println("Your change: " + cash.format(change));
+
+                    } else if (amount < finaltotal) {
+
+                        System.out.println("please enter correct amount");
+                    }
+
+                } while (amount < finaltotal);
+                break;
+
+            }
+
+            //Bitcoin Option, where it would take the bitcoin equivalent to the final toatl
+            case ("Bitcoin"): {
+
+                System.out.println("The BTC equivalent to " + finaltotal + "will be charged to your Bitcoin "
+                        + "wallette as per BITCOIN \");\n"
+                        + "            . Your Bitcoin stat for Dulux Paint Toronto and amount that is being charged at conversion"
+                        + "rate as per BITCOIN ");
+
+                break;
+            }
+
+            //This code is similar to the Credit Card code where the user enter the pin and verifies it with if/else statements
+            case ("Debit"): {
+
+                String pin2;
+
+                System.out.println("Enter your Pin");
+                pin2 = Sumantra3.nextLine();
+
+                int l = pin2.length();
+
+                //if pine too long
+                if (l > 4) {
+
+                    System.out.println("Invalid Pin");
+
+                } //if pin too short
+                else if (l < 4) {
+
+                    System.out.println("Invalid Pin");
+
+                } else {
+
+                    System.out.println("Payment Accepted");
+
+                }
+
+                break;
+            }
+
+            //This default used just incase user enter a different payment method that is not specified
+            default: {
+                System.out.println("Not a payment Method");
+                break;
+            }
+        }
+
+    }
+
+    //Final method for the thankyou statement
+    public static void thankyou(String name) {
+
+        System.out.println("Thank you " + name + " for dining at Optimal One Diner");
+
+    }
+
+}
